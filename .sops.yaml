@@ -1,0 +1,17 @@
+creation_rules:
+  # Encrypt .tfvars files (macOS only, used for provisioning)
+  - path_regex: \.tfvars(\.json)?$
+    encrypted_regex: "^(.*)$"
+    age: "age1w6th0yr0gp5tjpzg3aalvceqaa2scpl3tmuh2dckvea9zzzchq3qwpjp5m" # macOS
+
+  # Encrypt Terraform state and backups (macOS only)
+  - path_regex: \.tfstate(\.backup)?$
+    encrypted_regex: "^(.*)$"
+    age: "age1w6th0yr0gp5tjpzg3aalvceqaa2scpl3tmuh2dckvea9zzzchq3qwpjp5m" # macOS
+
+  # Encrypt .env files for Docker (used by NixOS)
+  - path_regex: \.env$
+    encrypted_regex: "^(.*)$"
+    age: >- # macOS and NixOS keys
+      age1w6th0yr0gp5tjpzg3aalvceqaa2scpl3tmuh2dckvea9zzzchq3qwpjp5m,
+      age1tv47j3afwqyzg8092v8q7599nplkzhgnzrjanzq4cphm6l0ff4fsgcne7x

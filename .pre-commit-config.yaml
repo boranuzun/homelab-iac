@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: sops-encrypt
+        name: Encrypt secrets to .enc files
+        entry: .pre-commit-sops.sh
+        language: script
+        pass_filenames: false # prevents empty list from breaking things
+        always_run: true # force it to run even if no files match
+        exclude: "" # override exclusions so it runs every time
