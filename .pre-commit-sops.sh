@@ -1,10 +1,23 @@
 #!/bin/bash
 set -euo pipefail
 
+# Array of file extensions to check
+FILE_EXTENTIONS=(
+  "*.tfvars"
+  "*.tfvars.json"
+  "*.tfstate"
+  "*.tfstate.backup"
+  ".env"
+)
+
 # Find all secret files (even if ignored), excluding already encrypted
 secret_files=$(find . \
   -type f \
-  \( -name "*.tfvars" -o -name "*.tfvars.json" -o -name "*.tfstate" -o -name "*.tfstate.backup" -o -name ".env" \) \
+  \( -name "${FILE_EXTENTIONS[0]}" \
+  -o -name "${FILE_EXTENTIONS[1]}" \
+  -o -name "${FILE_EXTENTIONS[2]}" \
+  -o -name "${FILE_EXTENTIONS[3]}" \
+  -o -name "${FILE_EXTENTIONS[4]}" \) \
   ! -name "*.enc")
 
 # Track encrypted files to add after loop
