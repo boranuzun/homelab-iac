@@ -1,10 +1,10 @@
 # flake.nix
 {
-  description = "NixOS Server Configuration with Automatic Partitioning";
+  description = "NixOS Server Configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable }: {

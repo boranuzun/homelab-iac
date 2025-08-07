@@ -8,7 +8,7 @@
 
   # Boot configuration
   boot.loader.grub.enable = true;
-  
+
   boot.loader.grub.device = "/dev/sda";
   boot.loader.efi.canTouchEfiVariables = false;
 
@@ -138,7 +138,7 @@
   };
 
   # System state version
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 
   # Journald configuration for log retention
   services.journald.extraConfig = ''
