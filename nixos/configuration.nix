@@ -56,13 +56,14 @@
   };
 
   # User configuration
-  users.users.nixos = {
+  users.users.boran = {
     isNormalUser = true;
-    description = "NixOS User";
-    extraGroups = [ "wheel" "docker" ];  # Removed networkmanager as it's disabled
+    description = "Boran's User";
+    extraGroups = [ "wheel" "docker" ];
     shell = pkgs.bash;
+    hashedPassword = "$6$AbS2hbvZjuBX4UUQ$qSyjRgCz8xPkn8nRluT3Ue5f1g.N/Yvn52HLy/uO1uwHc4Vd1Ch4eUg0uqsf8ViyEbenz.pRciaNSpRp/3mPN1";
     openssh.authorizedKeys.keys = [
-      # SSH key for user nixos
+      # SSH key for user boran
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG4eiTftWXVdB5OtQ5TQ8GaVx0WOrfulIJlsxTIZhOfB macOS"
     ];
   };
