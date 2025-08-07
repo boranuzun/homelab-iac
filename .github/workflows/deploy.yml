@@ -49,7 +49,12 @@ jobs:
                   sops decrypt --input-type dotenv --output-type dotenv "$dir/.env.enc" > "$dir/.env"
                 fi
 
-                docker compose -f "$dir/compose.yaml" --env-file "$dir/.env" up -d
+                # Run docker-compose with or without --env-file
+                if [ -f "$dir/.env" ]; then
+                  docker compose -f "$dir/compose.yaml" --env-file "$dir/.env" up -d
+                else
+                  docker compose -f "$dir/compose.yaml" up -d
+                fi
               fi
             done
           EOF

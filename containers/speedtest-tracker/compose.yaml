@@ -23,7 +23,7 @@ services:
       - "traefik.http.routers.speedtest-https.tls=true"
       - "traefik.http.routers.speedtest-https.entrypoints=websecure"
       - "traefik.http.routers.speedtest-https.tls.certresolver=cloudflare"
-      - "traefik.http.routers.speedtest-https.rule=Host(`speed.konoha.ch`)"
+      - "traefik.http.routers.speedtest-https.rule=Host(`speed.nixlab.ch`)"
       - "traefik.http.services.speedtest.loadbalancer.server.port=80"
 
     restart: unless-stopped
