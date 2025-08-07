@@ -6,6 +6,12 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
+  # Filesystem configuration
+  fileSystems."/" = {
+  device = "/dev/sda1";
+  fsType = "ext4";
+  };
+
   # Boot
   boot.initrd.availableKernelModules = [ 
     "ahci" 
