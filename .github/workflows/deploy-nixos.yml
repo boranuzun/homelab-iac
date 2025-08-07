@@ -27,6 +27,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i key.pem root@${NIXOS_IP} <<'EOF'
             set -e
             rm -rf /etc/nixos/*
+            rm -rf /tmp/homelab-iac
             git clone https://github.com/boranuzun/homelab-iac.git /tmp/homelab-iac
             cp -r /tmp/homelab-iac/nixos/* /etc/nixos/
             nixos-rebuild switch
