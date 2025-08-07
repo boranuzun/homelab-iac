@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'nixos/**'
-      # - 'containers/**'
+      - 'containers/**'
 
 jobs:
   deploy:
@@ -35,15 +35,21 @@ jobs:
             cp -r /tmp/homelab-iac/nixos/* /etc/nixos/
             nixos-rebuild switch
 
-
             # === Update containers ===
-            # mkdir -p /opt/containers
-            # rsync -a --delete /tmp/homelab-iac/containers/ /opt/containers/
+            mkdir -p /opt/containers
+            rsync -a --delete /tmp/homelab-iac/containers/ /opt/containers/
 
-            # for dir in /opt/containers/*; do
-            #   if [ -f "$dir/compose.yaml" ]; then
-            #     echo "Deploying container: $(basename "$dir")"
-            #     docker compose -f "$dir/compose.yaml" --env-file "$dir/.env" up -d
-            #   fi
-            # done
+            for dir in /opt/containers/*; do
+              if [ -f "$dir/compose.yaml" ]; then
+                echo "Processing container: $(basename "$dir")"
+
+                # Decrypt .env.enc to .env if it exists
+                if [ -f "$dir/.env.enc" ]; then
+                  echo "Decrypting .env.enc for $(basename "$dir")"
+                  sops decrypt --input-type dotenv --output-type dotenv "$dir/.env.enc" > "$dir/.env"
+                fi
+
+                docker compose -f "$dir/compose.yaml" --env-file "$dir/.env" up -d
+              fi
+            done
           EOF

@@ -14,4 +14,4 @@ creation_rules:
     encrypted_regex: "^(.*)$"
     age: # macOS and NixOS keys
       age1w6th0yr0gp5tjpzg3aalvceqaa2scpl3tmuh2dckvea9zzzchq3qwpjp5m,
-      age1tv47j3afwqyzg8092v8q7599nplkzhgnzrjanzq4cphm6l0ff4fsgcne7x
+      age1gz5eq5gnctj7elj03j25xgelyxzlnj094u8lrcygjhkphpckpu0sdl8dwp
