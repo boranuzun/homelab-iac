@@ -107,6 +107,7 @@
     tree
     btop
     fastfetch
+    bat
     
     # Docker tools
     docker
