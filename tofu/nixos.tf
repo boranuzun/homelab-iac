@@ -1,31 +1,31 @@
 resource "proxmox_vm_qemu" "nixos" {
-  agent                       = 1
-  args                        = ""
-  bios                        = "seabios"
-  boot                        = "order=scsi0;ide2;net0"
-  bootdisk                    = ""
-  define_connection_info      = false
-  description                 = ""
-  force_create                = false
-  full_clone                  = false
-  hagroup                     = ""
-  hastate                     = ""
-  hotplug                     = "network,disk,usb"
-  kvm                         = true
-  machine                     = "q35"
-  memory                      = 6144
-  name                        = "nixos"
-  onboot                      = true
-  pool                        = ""
-  protection                  = false
-  qemu_os                     = "l26"
-  scsihw                      = "virtio-scsi-single"
-  startup                     = ""
-  tablet                      = true
-  tags                        = ""
-  target_nodes                = ["pve1"]
-  vm_state                    = "running"
-  vmid                        = 105
+  agent                  = 1
+  args                   = ""
+  bios                   = "seabios"
+  boot                   = "order=scsi0;net0"
+  bootdisk               = ""
+  define_connection_info = false
+  description            = ""
+  force_create           = false
+  full_clone             = false
+  hagroup                = ""
+  hastate                = ""
+  hotplug                = "network,disk,usb"
+  kvm                    = true
+  machine                = "q35"
+  memory                 = 6144
+  name                   = "nixos"
+  onboot                 = true
+  pool                   = ""
+  protection             = false
+  qemu_os                = "l26"
+  scsihw                 = "virtio-scsi-single"
+  startup                = ""
+  tablet                 = true
+  tags                   = ""
+  target_nodes           = ["pve1"]
+  vm_state               = "running"
+  vmid                   = 105
 
   cpu {
     affinity = ""
@@ -39,13 +39,6 @@ resource "proxmox_vm_qemu" "nixos" {
   }
 
   disks {
-    ide {
-      ide2 {
-        cdrom {
-          iso         = "local:iso/latest-nixos-minimal-x86_64-linux.iso"
-        }
-      }
-    }
     scsi {
       scsi0 {
         disk {
