@@ -1,0 +1,22 @@
+services:
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    ports:
+      - 8081:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      # WATCHTOWER_DISABLE_CONTAINERS: "" # will ignore labels set. It is worth checking out labels as that can be a more scalabe solution (automatic)
+      WATCHTOWER_SCHEDULE: "0 0 4 * * *" # check and update containers daily at 4:00 AM
+      WATCHTOWER_CLEANUP: true # remove the old image after restarting a container with a new image
+      WATCHTOWER_TIMEOUT: 30s # timeout before the container is forcefully stopped. When set, this option will change the default (10s) wait time to the given value
+      WATCHTOWER_REMOVE_VOLUMES: true # remove all anonymous volumes from the container before restarting with a new image. Named volumes will not be removed!
+      WATCHTOWER_HTTP_API_TOKEN: ${WATCHTOWER_HTTP_API_TOKEN} # sets an authentication token to HTTP API requests
+      WATCHTOWER_HTTP_API_METRICS: true # enables a metrics endpoint, exposing prometheus metrics via HTTP. See Metrics for details.
+      WATCHTOWER_NOTIFICATIONS: gotify
+      WATCHTOWER_NOTIFICATION_GOTIFY_URL: ${WATCHTOWER_GOTIFY_URL}
+      WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN: ${WATCHTOWER_GOTIFY_TOKEN}
+      WATCHTOWER_NOTIFICATIONS_HOSTNAME: "watchtower"
+      TZ: ${TZ}
+    restart: unless-stopped
