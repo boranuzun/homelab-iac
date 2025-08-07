@@ -1,0 +1,27 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    ports:
+      - 3001:3001
+    volumes:
+      - uptimekuma-data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.uptimekuma-https.tls=true"
+      - "traefik.http.routers.uptimekuma-https.entrypoints=websecure"
+      - "traefik.http.routers.uptimekuma-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.uptimekuma-https.rule=Host(`kuma.konoha.ch`)"
+      - "traefik.http.services.uptimekuma.loadbalancer.server.port=3001"
+    networks:
+      - traefik_proxy
+    restart: unless-stopped
+
+volumes:
+  uptimekuma-data:
+    driver: local
+
+networks:
+  traefik_proxy:
+    external: true
