@@ -107,6 +107,8 @@
     tree
     fastfetch
     bat
+    age
+    sops
 
     # Docker tools
     docker

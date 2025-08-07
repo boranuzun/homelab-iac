@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'nixos/**'
-      - 'containers/**'
+      # - 'containers/**'
 
 jobs:
   deploy:
@@ -37,13 +37,13 @@ jobs:
 
 
             # === Update containers ===
-            mkdir -p /opt/containers
-            rsync -a --delete /tmp/homelab-iac/containers/ /opt/containers/
+            # mkdir -p /opt/containers
+            # rsync -a --delete /tmp/homelab-iac/containers/ /opt/containers/
 
-            for dir in /opt/containers/*; do
-              if [ -f "$dir/compose.yaml" ]; then
-                echo "Deploying container: $(basename "$dir")"
-                docker compose -f "$dir/compose.yaml" --env-file "$dir/.env" up -d
-              fi
-            done
+            # for dir in /opt/containers/*; do
+            #   if [ -f "$dir/compose.yaml" ]; then
+            #     echo "Deploying container: $(basename "$dir")"
+            #     docker compose -f "$dir/compose.yaml" --env-file "$dir/.env" up -d
+            #   fi
+            # done
           EOF
