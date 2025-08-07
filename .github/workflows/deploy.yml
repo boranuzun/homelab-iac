@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'nixos/**'
+      - 'containers/**'
 
 jobs:
   deploy:
@@ -26,9 +27,23 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no -i key.pem root@${NIXOS_IP} <<'EOF'
             set -e
+
+            # === Update NixOS config ===
             rm -rf /etc/nixos/*
             rm -rf /tmp/homelab-iac
             git clone https://github.com/boranuzun/homelab-iac.git /tmp/homelab-iac
             cp -r /tmp/homelab-iac/nixos/* /etc/nixos/
             nixos-rebuild switch
+
+
+            # === Update containers ===
+            mkdir -p /opt/containers
+            rsync -a --delete /tmp/homelab-iac/containers/ /opt/containers/
+
+            for dir in /opt/containers/*; do
+              if [ -f "$dir/compose.yaml" ]; then
+                echo "Deploying container: $(basename "$dir")"
+                docker compose -f "$dir/compose.yaml" --env-file "$dir/.env" up -d
+              fi
+            done
           EOF
