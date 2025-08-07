@@ -105,10 +105,9 @@
     unzip
     zip
     tree
-    btop
     fastfetch
     bat
-    
+
     # Docker tools
     docker
     docker-compose
@@ -121,6 +120,7 @@
     # System monitoring
     iotop
     lsof
+    btop
   ];
 
   # Enable nix flakes
