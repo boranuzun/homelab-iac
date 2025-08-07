@@ -106,6 +106,7 @@
     zip
     tree
     btop
+    fastfetch
     
     # Docker tools
     docker

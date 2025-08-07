@@ -1,0 +1,33 @@
+name: Deploy NixOS
+
+on:
+  push:
+    paths:
+      - 'nixos/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Start Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: SSH and deploy
+        env:
+          NIXOS_IP: 192.168.1.15
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+          chmod 600 key.pem
+
+          ssh -o StrictHostKeyChecking=no -i key.pem root@${NIXOS_IP} <<'EOF'
+            set -e
+            rm -rf /etc/nixos/*
+            git clone https://github.com/boranuzun/homelab-iac.git /tmp/homelab-iac
+            cp -r /tmp/homelab-iac/nixos/* /etc/nixos/
+            nixos-rebuild switch
+          EOF
