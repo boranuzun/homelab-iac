@@ -1,0 +1,33 @@
+services:
+  speedtest-tracker:
+    image: lscr.io/linuxserver/speedtest-tracker:latest
+    container_name: speedtest-tracker
+    ports:
+      - 3002:80
+    volumes:
+      - /opt/containers/speedtest-tracker/config:/config
+    environment:
+      - PUID=${SPEEDTEST_TRACKER_PUID}
+      - PGID=${SPEEDTEST_TRACKER_PGID}
+      - APP_KEY=${SPEEDTEST_TRACKER_APP_KEY} # How to generate an app key: echo -n 'base64:'; openssl rand -base64 32;
+      - TZ=${TZ}
+      - DISPLAY_TIMEZONE=${TZ}
+      - DB_CONNECTION=sqlite
+      - SPEEDTEST_SCHEDULE=0 * * * * # optional: schedule a speedtest with an cronjob https://crontab.guru
+      - APP_DEBUG=true
+    
+    networks:
+      - traefik_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.speedtest-https.tls=true"
+      - "traefik.http.routers.speedtest-https.entrypoints=websecure"
+      - "traefik.http.routers.speedtest-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.speedtest-https.rule=Host(`speed.konoha.ch`)"
+      - "traefik.http.services.speedtest.loadbalancer.server.port=80"
+
+    restart: unless-stopped
+
+networks:
+  traefik_proxy:
+    external: true

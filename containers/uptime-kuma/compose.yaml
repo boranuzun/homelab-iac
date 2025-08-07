@@ -12,7 +12,7 @@ services:
       - "traefik.http.routers.uptimekuma-https.tls=true"
       - "traefik.http.routers.uptimekuma-https.entrypoints=websecure"
       - "traefik.http.routers.uptimekuma-https.tls.certresolver=cloudflare"
-      - "traefik.http.routers.uptimekuma-https.rule=Host(`kuma.konoha.ch`)"
+      - "traefik.http.routers.uptimekuma-https.rule=Host(`kuma.nixlab.ch`)"
       - "traefik.http.services.uptimekuma.loadbalancer.server.port=3001"
     networks:
       - traefik_proxy
