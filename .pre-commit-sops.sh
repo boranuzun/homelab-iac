@@ -26,8 +26,10 @@ enc_files_to_add=()
 for filename in $secret_files; do
     enc_file="${filename}.enc"
 
-    # Skip if already encrypted version exists
-    [[ -f "$enc_file" ]] && continue
+    # Remove old encrypted version if it exists
+    if [[ -f "$enc_file" ]]; then
+        rm -f "$enc_file"
+    fi
 
     # Skip if file already contains SOPS metadata
     grep -q 'sops:' "$filename" && continue
