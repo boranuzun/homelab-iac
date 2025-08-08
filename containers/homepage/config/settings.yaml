@@ -1,0 +1,52 @@
+---
+# https://gethomepage.dev/configs/settings/
+title: Konoha's Homepage
+background:
+  # image: https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80
+  image: https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=2560&q=80
+  # image: https://singlecolorimage.com/get/0F0F0F/2560x1440.png
+  blur: md # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
+  saturate: 100 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+  brightness: 30 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+  opacity: 70 # 0-100
+disableCollapse: true
+statusStyle: "basic"
+quicklaunch:
+  provider: google # google, duckduckgo, bing, baidu, brave or custom
+
+layout:
+  Networking:
+    header: false
+    icon: mdi-lan-#ffffff
+    
+  Media1:
+    header: false
+    icon: mdi-play-box-multiple-#ffffff
+
+  Media2:
+    header: false
+    icon: mdi-play-box-multiple-#ffffff
+    
+  Hypervisor:
+    header: false
+    icon: mdi-desktop-classic-#ffffff
+
+  Home Automation:
+    header: false
+    style: row
+    columns: 3
+    icon: mdi-home-#ffffff
+
+  Calendar:
+    header: false
+    icon: mdi-calendar-#ffffff
+
+  Monitoring:
+    header: false
+    icon: mdi-heart-pulse-#ffffff
+    style: row
+    columns: 3
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey

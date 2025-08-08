@@ -1,0 +1,42 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+
+- Lab:
+    - Dozzle:
+        - icon: sh-dozzle
+          href: https://dozzle.nixlab.ch
+
+- Tools:
+    - ChatGPT:
+        - icon: chatgpt.svg
+          href: https://chat.openai.com/chat
+
+    - IT Tools:
+        - icon: it-tools.svg
+          href: https://it-tools.tech
+
+    - TinyWow:
+        - abbr: TW
+          href: https://tinywow.com
+
+    - iLovePDF:
+        - abbr: IL
+          href: https://ilovepdf.com/fr
+
+- Websites:
+    - GitHub:
+        - icon: github.svg
+          href: https://github.com/boranuzun
+
+    - boranuzun:
+        - abbr: BU
+          href: https://boranuzun.ch/
+
+    - Cloudflare:
+        - icon: cloudflare.svg
+          href: https://dash.cloudflare.com/
+
+    - Infomaniak:
+        - icon: si-infomaniak-#0098FF
+          href: https://kdrive.infomaniak.com/

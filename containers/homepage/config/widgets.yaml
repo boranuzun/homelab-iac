@@ -1,0 +1,35 @@
+---
+# https://gethomepage.dev/widgets/info/glances/
+- glances:
+    url: http://192.168.1.100:61208
+    version: 4
+    cpu: true
+    mem: true
+    cputemp: true
+    uptime: true
+    expanded: true
+
+# https://gethomepage.dev/widgets/info/resources/
+- resources:
+    disk: /
+
+# https://gethomepage.dev/widgets/info/search/
+- search:
+    provider: [google, duckduckgo]
+    target: _blank
+
+# https://gethomepage.dev/widgets/info/datetime/
+- datetime:
+    text_size: md
+    locale: fr
+    format:
+      timeStyle: long
+
+# https://gethomepage.dev/widgets/info/openmeteo/
+- openmeteo:
+    label: Onex
+    latitude: 46.184
+    longitude: 6.1024
+    timezone: Europe/Zurich
+    units: metric
+    cache: 5

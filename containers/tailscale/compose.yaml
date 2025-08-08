@@ -10,7 +10,7 @@ services:
       - TS_AUTHKEY=${TAILSCALE_TS_AUTHKEY} # Generate auth keys here: https://login.tailscale.com/admin/settings/keys
       - TS_ROUTES=${TAILSCALE_TS_ROUTES} # Creates a subnet router for Tailscale. Use your subnet's CIDR in the form: 192.168.1.0/24
       - TS_SOCKET=/var/run/tailscale/tailscaled.sock # Specifying the /var/lib/tailscale/tailscaled.sock location allows use of standard Tailscale commands 
-      - TS_EXTRA_ARGS=--advertise-exit-node # Allows the container to be used as an exit node
+      # - TS_EXTRA_ARGS=--advertise-exit-node # Allows the container to be used as an exit node
       - TS_STATE_DIR=/var/lib/tailscale # Required to create a persistent container state that will survive reboots
     # - TS_ACCEPT_DNS=${TS_ACCEPT_DNS} # Set to false for Pi-hole Docker setups
     cap_add:

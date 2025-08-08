@@ -1,0 +1,84 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- Networking:
+    - Traefik:
+        icon: traefik.svg
+        href: https://traefik.konoha.ch
+        #description: Reverse proxy and load balancer for microservices
+        container: traefik
+        widget:
+          type: traefik
+          url: http://192.168.1.15:8080
+          # username: ${HOMEPAGE_VAR_TRAEFIK_USERNAME}
+          # password: ${HOMEPAGE_VAR_TRAEFIK_PASSWORD}
+
+    - Tailscale:
+        icon: tailscale.svg
+        href: https://login.tailscale.com/admin/machines
+        #description: Secure, easy-to-use, mesh VPN based on WireGuard
+        siteMonitor: https://login.tailscale.com/admin/machines
+        widget:
+          type: tailscale
+          deviceid: ------
+          key: ------
+
+    - Router:
+        icon: mdi-router-#ffffff
+        href: http://192.168.1.1
+        description: Connects and manages home network and internet access
+
+    - HP OfficeJet Pro 8024:
+        icon: mdi-printer-#ffffff
+        href: http://192.168.1.20
+        description: Printer
+
+- Hypervisor:
+    - Proxmox:
+        icon: proxmox.svg
+        href: https://proxmox.konoha.ch
+        #description: Open-source virtualization and container platform
+        ping: https://192.168.1.101
+        widget:
+          type: proxmox
+          url: https://192.168.1.101:8006
+          username: ------
+          password: ------
+
+- Monitoring:
+    - Uptime Kuma:
+        icon: uptime-kuma.svg
+        href: https://kuma.konoha.ch
+        #description: Self-hosted, open-source monitoring and alerting tool
+        container: uptime-kuma
+        widget:
+          type: uptimekuma
+          url: http://192.168.1.15:3001
+          slug: services
+
+    - Speedtest Tracker:
+        icon: si-speedtest
+        href: https://speed.konoha.ch
+        container: speedtest-tracker
+        widget:
+          type: speedtest
+          url: http://192.168.1.15:3002
+          bitratePrecision: 3
+
+    - Watchtower:
+        icon: watchtower.svg
+        container: watchtower
+        widget:
+          type: watchtower
+          url: http://192.168.1.15:8081
+          key: ------
+
+    - Gotify:
+        icon: gotify.svg
+        href: https://gotify.konoha.ch
+        container: gotify
+        widget:
+          type: gotify
+          url: http://192.168.1.100:8082
+          key: ------
