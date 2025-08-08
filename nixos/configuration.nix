@@ -125,6 +125,20 @@
     btop
   ];
 
+  # Shell aliases
+  environment.shellAliases = {
+    c = "clear";
+    ff = "fastfetch";
+    e = "exit";
+    shutdown = "sudo shutdown now";
+    reboot = "sudo reboot";
+    rr = "source ~/.bashrc";
+    lzd = "lazydocker";
+    dps = ''docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"'';
+    dpsc = ''docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}" | lolcat'';
+    bat = "batcat";
+  };
+
   # Enable nix flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
