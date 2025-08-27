@@ -8,7 +8,6 @@
 
   # Boot configuration
   boot.loader.grub.enable = true;
-
   boot.loader.grub.device = "/dev/sda";
   boot.loader.efi.canTouchEfiVariables = false;
 
@@ -29,14 +28,13 @@
   
   # DNS configuration
   networking.nameservers = [ 
-    "192.168.1.1"     # Your router DNS
+    "192.168.1.10"    # My DNS server
     "1.1.1.1"         # Cloudflare DNS (backup)
     "8.8.8.8"         # Google DNS (backup)
   ];
   
   # Disable NetworkManager to avoid conflicts with static IP
   networking.networkmanager.enable = false;
-  
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 8080 9000 ];
   
@@ -123,6 +121,9 @@
     iotop
     lsof
     btop
+
+    # Demo
+    cowsay
   ];
 
   # Shell aliases
