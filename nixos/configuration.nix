@@ -123,7 +123,7 @@
     btop
 
     # Demo
-
+    cowsay
   ];
 
   # Shell aliases
